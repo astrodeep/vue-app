@@ -1,0 +1,84 @@
+.article {
+  font-family: $font-base;
+  color: $colorBase;
+  font-size: $font-size;
+
+  &__title {
+    @include fluidFontSize($font-size, $font-size + 14, $mobile-phone, $tablet, $font-size + 14);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 15px;
+    text-align: center;
+  }
+
+  &-card {
+
+    &__filter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 20px;
+
+    }
+
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      transition: 0.2s linear;
+      @include tablet-xs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include mobile {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+    }
+
+
+    &__item {
+      box-shadow: 0 2px 1px -1px var(--v-shadow-key-umbra-opacity, rgba(0, 0, 0, .2)), 0 1px 1px 0 var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, .14)), 0 1px 3px 0 var(--v-shadow-key-penumbra-opacity, rgba(0, 0, 0, .12));
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__category {
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      @include fluidFontSize($font-size, $font-size + 8, $mobile-phone, $tablet, $font-size + 8);
+    }
+
+    &__category-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+
+    }
+
+    &__category-likes {
+      margin-top: auto;
+    }
+
+    &__title {
+      text-align: center;
+      margin-bottom: 10px;
+      transition: 0.2s linear;
+    }
+
+    &__images {
+      max-width: 50%;
+      margin: 0 auto;
+      display: block
+    }
+
+    &__description {
+      font-size: $font-size - 1;
+      margin-bottom: 20px;
+    }
+  }
+}
