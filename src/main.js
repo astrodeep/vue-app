@@ -5,7 +5,6 @@ import vueBem from '@verstaerker/vue-bem';
 import router from './router'
 import VueLodash from 'vue-lodash'
 import lodash from 'lodash'
-import VuePaginate from 'vue-paginate'
 import './assets/style/style.scss'
 Vue.use(
   vueBem,{
@@ -20,7 +19,7 @@ Vue.use(
     element: '__',
     modifier: '_',
   }
-},VuePaginate,
+},
 VueLodash, { name: 'custom' , lodash: lodash });
 
 Vue.config.productionTip = false
