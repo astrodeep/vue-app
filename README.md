@@ -23,7 +23,7 @@ yarn serve
 ### Json-server start
 
 ```
-yarn json-article
+yarn json-server
 ```
 
 

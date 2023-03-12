@@ -12,6 +12,9 @@ export default new Vuex.Store({
     isLoading: state => {
       return state.isLoading;
     },
+    filterSlice: state => {
+      return state.article.slice(0, 3)
+    }
   },
   mutations: {
     SET_ARTICLE (state, article) {
