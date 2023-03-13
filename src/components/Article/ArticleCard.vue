@@ -4,14 +4,13 @@
        input.article-card__filter-search(type="text", v-model="titleSearch", placeholder='Поиск по статьям(заголовок)')
        button.article-card__filter-button(type="submit" ) Очистить
      .article-card__container(v-if="!isLoading")
-       .article-card__item(v-for="(item, index) in filteredList")
-         .article-card__category(:key="index" v-on:click="item.show = !item.show") {{item.category}}
-         transition(name="fade")
-           .article-card__category-container(v-if="item.show")
+       .article-card__item(v-for="(item, index) in filteredList" :key="index")
+         .article-card__category(:class="{'active': item.active}" @click="toggleTitle(item)") {{item.category}}
+         .article-card__category-container(:class="{noneActive: item.active}")
              .article-card__title {{item.title}}
              img.article-card__images(:src="item.img")
              .article-card__description {{item.description}}
-             button.article-card__category-likes(v-on:click="item.counter += 1") Лайк {{ item.counter }}
+             button.article-card__category-likes(v-on:click="itemCounter(item)") Лайк {{ item.counter }}
      .loader__tasks_box(v-else-if='isLoading')
        .loader__tasks
          div
@@ -25,6 +24,7 @@
          div
 </template>
 <script>
+import Vue from "vue";
 import { mapActions, mapState, mapGetters} from 'vuex'
 
 export default {
@@ -39,9 +39,14 @@ export default {
     ...mapActions({
       appendArticle: 'loadArticle',
     }),
+
     resetForm(event){
       this.titleSearch = "";
     },
+    itemCounter: el => el.counter += 1,
+    toggleTitle(elems) {
+      Vue.set(elems, 'active', !elems.active);
+    }
 
   },
   computed: {
@@ -63,11 +68,3 @@ export default {
   },
 }
 </script>
-<style lang="scss">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-  opacity: 0;
-}
-</style>
